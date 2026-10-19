@@ -72,3 +72,15 @@ async function fetchGitHubUser(usernameInput){
     }
 }
 
+// Enter key support
+document.getElementById("username-input").addEventListener("keydown", (e) => {
+    if (e.key === "Enter") searchBtn.click();
+});
+
+// Load default profile on start
+window.addEventListener("DOMContentLoaded", () => {
+    const defaultUser = "hola-mundo999";
+    document.getElementById("username-input").value = defaultUser;
+    fetchGitHubUser(defaultUser);
+});
+
