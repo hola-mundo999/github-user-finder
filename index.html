@@ -155,6 +155,12 @@
         </div>
       </div>
 
+      <!-- Latest repositories (filled by app.js) -->
+      <div class="repos-block" id="repos-block" hidden>
+        <div class="repos-label">Latest repositories</div>
+        <div class="repos-list" id="repos-list"></div>
+      </div>
+
       <!-- View profile button -->
       <a class="view-btn" id="view-btn" href="#" target="_blank" rel="noopener noreferrer">
         View Full Profile on GitHub
@@ -174,11 +180,18 @@
       <button class="chip" data-username="tj">tj</button>
     </div>
 
+    <!-- Recent searches (filled by app.js) -->
+    <div class="recent-row" id="recent-row" hidden>
+      <span class="recent-label">Recent</span>
+      <span id="recent-chips" style="display: contents;"></span>
+    </div>
+
   </main>
 
   <!-- Footer -->
   <footer class="footer">
     <span>Built with Fetch API · GitHub Public API · Zero dependencies</span>
+    <span class="footer-note">Public API allows 60 requests an hour per network.</span>
   </footer>
 
   <script src="app.js"></script>
