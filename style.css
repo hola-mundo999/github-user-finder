@@ -12,14 +12,14 @@
   --bg-2:         #0D1120;
   --bg-card:      #111827;
   --border:       #1E2D45;
-  --border-glow:  #2563EB;
-  --accent:       #3B82F6;
-  --accent-2:     #60A5FA;
-  --accent-glow:  rgba(59,130,246,0.35);
+  --border-glow:  #E08A2B;
+  --accent:       #F59E42;
+  --accent-2:     #FFC078;
+  --accent-glow:  rgba(245,158,66,0.35);
   --green:        #10B981;
   --green-glow:   rgba(16,185,129,0.25);
   --red:          #EF4444;
-  --text-1:       #F0F6FF;
+  --text-1:       #F7F1E8;
   --text-2:       #8BA3C7;
   --text-3:       #4A6080;
   --mono:         'Space Mono', monospace;
@@ -44,15 +44,15 @@ body {
 .bg-grid {
   position: fixed; inset: 0; z-index: 0; pointer-events: none;
   background-image:
-    linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
+    linear-gradient(rgba(245,158,66,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,158,66,0.04) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
 .bg-glow {
   position: fixed; top: -200px; left: 50%; transform: translateX(-50%);
   width: 800px; height: 500px; z-index: 0; pointer-events: none;
-  background: radial-gradient(ellipse at center, rgba(59,130,246,0.12) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(245,158,66,0.12) 0%, transparent 70%);
 }
 
 /* ── Header ── */
@@ -104,8 +104,8 @@ body {
   display: inline-block;
   font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em;
   text-transform: uppercase; color: var(--accent);
-  border: 1px solid rgba(59,130,246,0.3);
-  background: rgba(59,130,246,0.08);
+  border: 1px solid rgba(245,158,66,0.3);
+  background: rgba(245,158,66,0.08);
   padding: 5px 14px; border-radius: 20px; margin-bottom: 1.2rem;
 }
 
@@ -193,7 +193,7 @@ body {
 
 .search-input:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(59,130,246,0.15), 0 0 20px rgba(59,130,246,0.1);
+  box-shadow: 0 0 0 3px rgba(245,158,66,0.15), 0 0 20px rgba(245,158,66,0.1);
 }
 
 .search-input:focus ~ .input-icon { color: var(--accent); }
@@ -201,11 +201,11 @@ body {
 .search-btn {
   display: flex; align-items: center; gap: 8px;
   height: 50px; padding: 0 22px;
-  background: var(--accent); color: #fff;
+  background: var(--accent); color: #21160a;
   border: none; border-radius: 10px; cursor: pointer;
   font-family: var(--sans); font-size: 0.9rem; font-weight: 600;
   white-space: nowrap;
-  box-shadow: 0 4px 15px rgba(59,130,246,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+  box-shadow: 0 4px 15px rgba(245,158,66,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
   transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
   position: relative; overflow: hidden;
 }
@@ -217,9 +217,9 @@ body {
 }
 
 .search-btn:hover {
-  background: #2563EB;
+  background: #D97706;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(59,130,246,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
+  box-shadow: 0 8px 25px rgba(245,158,66,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
 }
 
 .search-btn:active { transform: translateY(0); }
@@ -307,14 +307,14 @@ body {
   border: 2px solid var(--border);
   display: block;
   box-shadow: 0 8px 24px rgba(0,0,0,0.5),
-              0 0 0 4px rgba(59,130,246,0.1);
+              0 0 0 4px rgba(245,158,66,0.1);
   transition: transform var(--transition), box-shadow var(--transition);
 }
 
 .profile-card:hover .avatar {
   transform: translateZ(8px) scale(1.04);
   box-shadow: 0 12px 32px rgba(0,0,0,0.6),
-              0 0 0 4px rgba(59,130,246,0.25),
+              0 0 0 4px rgba(245,158,66,0.25),
               0 0 20px var(--accent-glow);
 }
 
@@ -480,7 +480,7 @@ body {
 
 .chip:hover {
   border-color: var(--accent); color: var(--accent);
-  background: rgba(59,130,246,0.08);
+  background: rgba(245,158,66,0.08);
   box-shadow: 0 0 12px var(--accent-glow);
   transform: translateY(-2px);
 }
@@ -540,4 +540,140 @@ body {
   0%   { transform: translateY(0px); }
   50%  { transform: translateY(-12px); }
   100% { transform: translateY(0px); }
+}
+
+/* ─────────────────────────────────────────
+   EXTRA: recent searches, latest repos, status
+───────────────────────────────────────── */
+
+.search-btn:disabled {
+  opacity: 0.7;
+  cursor: wait;
+  transform: none;
+}
+
+/* Recent searches */
+.recent-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2px;
+  min-height: 24px;
+}
+
+.recent-row[hidden] { display: none; }
+
+.recent-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.recent-chip {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--text-2);
+  background: transparent;
+  border: 1px dashed var(--border);
+  border-radius: 20px;
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.recent-chip:hover {
+  border-style: solid;
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+/* Latest repositories */
+.repos-block {
+  margin-bottom: 20px;
+  border-top: 1px solid var(--border);
+  padding-top: 18px;
+}
+
+.repos-block[hidden] { display: none; }
+
+.repos-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 10px;
+}
+
+.repos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.repo-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text-2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  transition: border-color var(--transition), color var(--transition), transform var(--transition);
+}
+
+.repo-item:hover {
+  border-color: var(--accent);
+  color: var(--text-1);
+  transform: translateX(3px);
+}
+
+.repo-name {
+  color: var(--accent);
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.repo-meta {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--text-3);
+  font-size: 0.72rem;
+}
+
+/* Blog as a real link */
+.info-item a {
+  color: inherit;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.info-item a:hover { text-decoration: underline; }
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footer-note {
+  color: var(--text-3);
+  opacity: 0.65;
+  font-size: 0.62rem;
 }
