@@ -8,7 +8,11 @@ location, company, blog and join date — straight from GitHub's public API, no 
 - Search any GitHub user by username (`@` prefix accepted, malformed names rejected up front)
 - Profile card: avatar, name, bio, repos / followers / following counts
 - Info grid: location, website (a real, clickable link), join date, company
-- **Latest repositories** — the three most recently updated public repos with language and stars
+- **Repositories block** — five repos with language, stars and how recently they were updated,
+  switchable between **Recent** and **Starred** tabs, plus a footnote with the total star count
+- **Language mix** — a stacked bar of the top languages across the user's own repos, with GitHub's
+  own colour for each
+- **Stars stat** in the stats row, summed across the loaded repositories
 - **Recent searches** saved in `localStorage` and one click to revisit
 - Loading indicator, disabled button while a request is in flight
 - Honest error messages: empty input, invalid username, unknown user, API rate limit (with the

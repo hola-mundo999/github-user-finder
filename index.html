@@ -125,6 +125,11 @@
           <span class="stat-number" id="stat-following">0</span>
           <span class="stat-label">Following</span>
         </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number" id="stat-stars">0</span>
+          <span class="stat-label">Stars</span>
+        </div>
       </div>
 
       <!-- Info grid -->
@@ -155,10 +160,24 @@
         </div>
       </div>
 
-      <!-- Latest repositories (filled by app.js) -->
+      <!-- Repositories + language mix (filled by app.js) -->
       <div class="repos-block" id="repos-block" hidden>
-        <div class="repos-label">Latest repositories</div>
+        <div class="repos-head">
+          <div class="repos-label">Repositories</div>
+          <div class="repo-tabs" role="tablist" aria-label="Sort repositories">
+            <button class="repo-tab is-active" type="button" role="tab" data-sort="updated" aria-selected="true">Recent</button>
+            <button class="repo-tab" type="button" role="tab" data-sort="stars" aria-selected="false">Starred</button>
+          </div>
+        </div>
+
+        <div class="lang-mix" id="lang-mix" hidden>
+          <div class="lang-mix-label">Language mix</div>
+          <div class="lang-bar" id="lang-bar"></div>
+          <div class="lang-legend" id="lang-legend"></div>
+        </div>
+
         <div class="repos-list" id="repos-list"></div>
+        <p class="repos-foot" id="repos-foot"></p>
       </div>
 
       <!-- View profile button -->
